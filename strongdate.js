@@ -43,10 +43,15 @@ function SD (serverTimestamp, offset) {
   })();
 
   function StrongDate() {
-    var args = Array.prototype.slice.call(arguments);
-    args.unshift(null);
-    this._localDate = new (Function.prototype.bind.apply(Date, args));
-    this._date = new Date(this._localDate - offset);
+    if (arguments.length == 1) {
+      this._date = new Date(arguments[0]);
+      this._localDate = new Date(+this._date + offset);
+    } else {
+      var args = Array.prototype.slice.call(arguments);
+      args.unshift(null);
+      this._localDate = new (Function.prototype.bind.apply(Date, args));
+      this._date = new Date(this._localDate - offset);
+    }
   }
 
   StrongDate._offset = offset;
