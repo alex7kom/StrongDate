@@ -145,3 +145,7 @@ function SD (serverTimestamp, offset) {
 
   return StrongDate;
 }
+
+if (typeof module !== 'undefined') {
+  module.exports = SD;
+}
