@@ -9,7 +9,7 @@ function SD (serverTimestamp, offset) {
     offset = +new Date() - parseInt(serverTimestamp, 10);
   }
 
-  if (Math.abs(offset) < 100000) {
+  if (Math.abs(offset) < 1000*60*10) {
     // No need for correction
     return Date;
   }
