@@ -16,29 +16,32 @@ function SD (serverTimestamp, offset) {
 
   var timezoneOffset, timezoneName;
   (function computeTimezoneOffset() {
-    var local = new Date();
-    var utc = new Date(+local - offset);
-    var utcTime = utc.getUTCHours()*60 + utc.getUTCMinutes();
-    var localTime = local.getHours()*60 + local.getMinutes();
-    timezoneOffset = utcTime - localTime;
+    var localOffset = new Date().getTimezoneOffset();
+    var offsetMinutes = Math.floor((offset/1000)/60);
+    timezoneOffset = (localOffset - offsetMinutes) % (24*60);
 
     timezoneName = 'GMT';
+
     if (timezoneOffset <= 0) {
       timezoneName += '+';
     } else {
       timezoneName += '-';
     }
+
     var timezoneOffsetAbs = Math.abs(timezoneOffset);
-    if (timezoneOffsetAbs/60 < 10) {
+
+    var timezoneOffsetHours = Math.floor(timezoneOffsetAbs/60);
+    if (timezoneOffsetHours < 10) {
       timezoneName += '0';
     }
-    var timezoneOffsetHours = Math.floor(timezoneOffsetAbs/60);
-    var timezoneOffsetMinutes = timezoneOffsetAbs - timezoneOffsetHours * 60;
     timezoneName += timezoneOffsetHours;
+
+    var timezoneOffsetMinutes = timezoneOffsetAbs % 60;
     if (timezoneOffsetMinutes < 10) {
       timezoneName += '0';
     }
     timezoneName += timezoneOffsetMinutes;
+
     timezoneName += ' (AREA 51)';
   })();
 
