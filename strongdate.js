@@ -1,6 +1,5 @@
 function SD (serverTimestamp, offset) {
-
-  if (offset == null) {
+  if (typeof offset === 'undefined') {
     if (!serverTimestamp || parseInt(serverTimestamp, 10) <= 0) {
       // Wrong server time
       return Date;
@@ -15,7 +14,7 @@ function SD (serverTimestamp, offset) {
   }
 
   var timezoneOffset, timezoneName;
-  (function computeTimezoneOffset() {
+  (function computeTimezoneOffset () {
     var localOffset = new Date().getTimezoneOffset();
     var offsetMinutes = Math.floor((offset/1000)/60);
     timezoneOffset = (localOffset - offsetMinutes) % (24*60);
@@ -45,14 +44,14 @@ function SD (serverTimestamp, offset) {
     timezoneName += ' (AREA 51)';
   })();
 
-  function StrongDate() {
-    if (arguments.length == 1) {
+  function StrongDate () {
+    if (arguments.length === 1) {
       this._date = new Date(arguments[0]);
       this._localDate = new Date(+this._date + offset);
     } else {
       var args = Array.prototype.slice.call(arguments);
       args.unshift(null);
-      this._localDate = new (Function.prototype.bind.apply(Date, args));
+      this._localDate = new (Function.prototype.bind.apply(Date, args))();
       this._date = new Date(this._localDate - offset);
     }
   }
@@ -130,19 +129,19 @@ function SD (serverTimestamp, offset) {
     };
   });
 
-  StrongDate.prototype.toUTCString = function() {
+  StrongDate.prototype.toUTCString = function () {
     return this._date.toUTCString().replace('UTC', 'GMT');
   };
 
-  StrongDate.prototype.getTimezoneOffset = function() {
+  StrongDate.prototype.getTimezoneOffset = function () {
     return timezoneOffset;
   };
 
-  StrongDate.prototype.toTimeString = function() {
+  StrongDate.prototype.toTimeString = function () {
     return this._localDate.toTimeString().split(' ')[0] + ' ' + timezoneName;
   };
 
-  StrongDate.prototype.toString = function() {
+  StrongDate.prototype.toString = function () {
     return this.toDateString() + ' ' + this.toTimeString();
   };
 
