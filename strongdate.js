@@ -1,14 +1,18 @@
-function SD (serverTimestamp, offset) {
+function SD (options) {
+  var timestamp = options.timestamp;
+  var offset = options.offset;
+  var threshold = options.threshold || (1000 * 60 * 10);
+
   if (typeof offset === 'undefined') {
-    if (!serverTimestamp || parseInt(serverTimestamp, 10) <= 0) {
+    if (!timestamp || parseInt(timestamp, 10) <= 0) {
       // Wrong server time
       return Date;
     }
 
-    offset = +new Date() - parseInt(serverTimestamp, 10);
+    offset = +new Date() - parseInt(timestamp, 10);
   }
 
-  if (Math.abs(offset) < 1000*60*10) {
+  if (Math.abs(offset) < threshold) {
     // No need for correction
     return Date;
   }
