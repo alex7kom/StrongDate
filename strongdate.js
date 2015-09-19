@@ -151,7 +151,3 @@ function SD (options) {
 
   return StrongDate;
 }
-
-if (typeof module !== 'undefined') {
-  module.exports = SD;
-}
