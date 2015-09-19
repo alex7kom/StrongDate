@@ -1,0 +1,27 @@
+{
+  "name": "strongdate",
+  "main": "dist/strongdate-amd.min.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Alex7Kom/StrongDate",
+  "authors": [
+    "Alexey Komarov <alex7kom@gmail.com>"
+  ],
+  "description": "Correct timezone on a user device",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "browser",
+    "time"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
