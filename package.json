@@ -1,0 +1,28 @@
+{
+  "name": "strongdate",
+  "version": "0.0.1",
+  "description": "Correct timezone on a user device",
+  "main": "dist/strongdate-amd.js",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-clone": "^1.0.0",
+    "gulp-header": "^1.7.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.4.1",
+    "gulp-umd": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex7Kom/StrongDate.git"
+  },
+  "keywords": [
+    "browser",
+    "time"
+  ],
+  "author": "Alexey Komarov <alex7kom@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Alex7Kom/StrongDate/issues"
+  },
+  "homepage": "https://github.com/Alex7Kom/StrongDate"
+}
