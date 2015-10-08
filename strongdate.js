@@ -53,9 +53,13 @@ function SD (options) {
       this._date = new Date(arguments[0]);
       this._localDate = new Date(+this._date + offset);
     } else {
-      var args = Array.prototype.slice.call(arguments);
-      args.unshift(null);
-      this._localDate = new (Function.prototype.bind.apply(Date, args))();
+      if (arguments.length === 0) {
+        this._localDate = new Date();
+      } else {
+        var args = Array.prototype.slice.call(arguments);
+        args.unshift(null);
+        this._localDate = new (Function.prototype.bind.apply(Date, args))();
+      }
       this._date = new Date(this._localDate - offset);
     }
   }
