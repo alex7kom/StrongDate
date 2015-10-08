@@ -1,6 +1,6 @@
 {
   "name": "strongdate",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Correct timezone on a user device",
   "main": "dist/strongdate-amd.js",
   "devDependencies": {

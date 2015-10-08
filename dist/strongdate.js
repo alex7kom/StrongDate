@@ -1,6 +1,6 @@
 /**
  * strongdate - Correct timezone on a user device
- * @version v0.0.1
+ * @version v0.0.2
  * @author Alexey Komarov <alex7kom@gmail.com>
  * @link https://github.com/Alex7Kom/StrongDate
  * @license MIT
@@ -60,9 +60,13 @@ function SD (options) {
       this._date = new Date(arguments[0]);
       this._localDate = new Date(+this._date + offset);
     } else {
-      var args = Array.prototype.slice.call(arguments);
-      args.unshift(null);
-      this._localDate = new (Function.prototype.bind.apply(Date, args))();
+      if (arguments.length === 0) {
+        this._localDate = new Date();
+      } else {
+        var args = Array.prototype.slice.call(arguments);
+        args.unshift(null);
+        this._localDate = new (Function.prototype.bind.apply(Date, args))();
+      }
       this._date = new Date(this._localDate - offset);
     }
   }
